@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5">
+    <from action=" method="post">
+        {% csrf_token %}
+        <label>Makanan</label>
+        <select class="from select" name="makanan">
+            <option selected>pilih</option>
+            {% for d in dataMakanan %}
+            <option value={{d.id}}>{{d.nama}}</option>
+            {% endfor %}
+        </select>
+        <label>Jumlah</label>
+        <input type="text" name="jumlah_makanan" class="from-control">
+        <label>Minuman</label>
+        <select class="form-select" nama="minuman">
+            <option selected>pilih</option>
+            {% for d in dataMinuman %} 
+            <option value="{{d.id}}">{{d.nama}}</option>
+            {% endfor %}
+        </select>
+        <label>Jumlah</label> 
+        <input type="jumlah_minuman" class="form-control"><br>
+        <button type="submit" class="btn btn-primary">Tambah</button>
+    </from>
+    </div>
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>Makanan</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Minuman</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{d.makanan.nama}}</td>
+                    <td>{{d.jumlah_makanan}}</td>
+                    <td>{{d.makanan.harga}}</td>
+                    <td>{{d.minuman.nama}}</td>
+                    <td>{{d.jumlah_minuman}}</td>
+                    <td>{{d.minuman.harga}}</td>
+                    <td>
+                        <a href="" class="btn btn-success">Detail</a>
+                        <a href="" class="btn-btn warning">Edit</a>
+                        <a href="" class="btn-btn warning">Hapus</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </dif>
+</dif>
+{% endblock %}
