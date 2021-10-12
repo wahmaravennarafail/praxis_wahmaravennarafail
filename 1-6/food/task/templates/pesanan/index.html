@@ -1,29 +1,28 @@
-{% extends "base.html" %}
-
+{% extends "basis.html" %}
 {% block content %}
 <div class="p-5">
-    <from action=" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         <label>Makanan</label>
-        <select class="from select" name="makanan">
+        <select class="form-control select" name="makanan">
             <option selected>pilih</option>
             {% for d in dataMakanan %}
             <option value={{d.id}}>{{d.nama}}</option>
             {% endfor %}
         </select>
         <label>Jumlah</label>
-        <input type="text" name="jumlah_makanan" class="from-control">
+        <input type="text" name="jumlah_makanan" class="form-control">
         <label>Minuman</label>
-        <select class="form-select" nama="minuman">
+        <select class="form-select" name="minuman">
             <option selected>pilih</option>
             {% for d in dataMinuman %} 
             <option value="{{d.id}}">{{d.nama}}</option>
             {% endfor %}
         </select>
         <label>Jumlah</label> 
-        <input type="jumlah_minuman" class="form-control"><br>
+        <input type="text" name="jumlah_minuman" class="form-control"><br>
         <button type="submit" class="btn btn-primary">Tambah</button>
-    </from>
+    </form>
     </div>
         <table class="table">
             <thead>
@@ -48,8 +47,8 @@
                     <td>{{d.minuman.harga}}</td>
                     <td>
                         <a href="" class="btn btn-success">Detail</a>
-                        <a href="" class="btn-btn warning">Edit</a>
-                        <a href="" class="btn-btn warning">Hapus</a>
+                        <a href="" class="btn btn-success">Edit</a>
+                        <a type="submit" class="btn btn-success" href="{{d.id}}/delete">Hapus</a>
                     </td>
                 </tr>
                 {% endfor %}
