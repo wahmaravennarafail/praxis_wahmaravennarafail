@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label>Makanan</label>
+            <select class="form-control select" name="makanan">
+                <option selected>pilih</option>
+                {% for d in makan %}
+                <option value={{d.id}}>{{d.nama}}</option>
+                {% endfor %}
+            </select>
+            <label>Jumlah</label>
+            <input type="text" name="jml_makanan" class="form-control">
+            <label>Minuman</label>
+            <select class="form-select" name="minuman">
+                <option selected>pilih</option>
+                {% for d in minum %} 
+                <option value="{{d.id}}">{{d.nama}}</option>
+                {% endfor %}
+            </select>
+            <label>Jumlah</label> 
+            <input type="text" name="jml_minuman" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+        </form>
+        </div>
+            <table class="table">
+                <thead>
+                <th>No</th>
+                <th>Makanan</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Minuman</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+            </thead>
+            <tbody>
+                {% for d in pesanan %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{d.makanan.nama}}</td>
+                    <td>{{d.jumlah_makanan}}</td>
+                    <td>{{d.makanan.harga}}</td>
+                    <td>{{d.minuman.nama}}</td>
+                    <td>{{d.jumlah_minuman}}</td>
+                    <td>{{d.minuman.harga}}</td>
+                    <td>
+                    <a type="submit" class="btn btn-success" href="/{{d.id}}/delete">Delete</a>                 
+                    <a type="submit" class="btn btn-success" href="/{{d.id}}/detail">Detail</a>                 
+                    <a type="submit" class="btn btn-success" href="/{{d.id}}/update">Edit</a>                  
+                </td>                          
+                </tr>
+    
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+</body>
+</html>
