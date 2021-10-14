@@ -9,7 +9,7 @@ def makanan(request):
         nama = request.POST["nama"] 
         harga = request.POST["harga"]
         models.makanan.objects.create(jenis=jenis, nama=nama, harga=harga)
-        return redirect('/')
+        return redirect('/makan')
     makan = models.makanan.objects.all()
     return render (request, "indexmakanan.html", {
         'makan' : makan
@@ -22,13 +22,14 @@ def minuman(request):
         nama = request.POST['nama']
         harga = request.POST['harga']
         models.minuman.objects.create(jenis=jenis, nama=nama, harga=harga)
-        return redirect('/')
+        return redirect('/minum')
     minum = models.minuman.objects.all()
     return render (request, "indexminuman.html", {
         'minum' :minum
         })
 
-
+def home(request):
+    return redirect('/pesanan')
 
 def index(request):
     if request.POST: 
@@ -74,9 +75,12 @@ def editminuman(request, id):
 
 def deletemakanan(request, id):
     models.makanan.objects.filter(id=id).delete()
-    return redirect('/makan')
+    return redirect('/makan/')
 
 def deleteminuman(request, id):
     models.minuman.objects.filter(id=id).delete()
-    return redirect('/minum')
+    return redirect('/minum/')
 
+def deletepesanan(request, id):
+    models.pesanan.objects.filter(id=id).delete()
+    return redirect('/pesanan/')
